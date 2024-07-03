@@ -2,6 +2,10 @@
 ___
 ## Projet 3DVP
 
+___
+### Description
+L'pplication Node.js de gestion de tâches permet aux utilisateurs d'ajouter facilement des tâches à une liste de choses à faire. Grâce à une interface intuitive, chaque tâche peut être ajoutée, et toutes les tâches sont stockées et affichées de manière organisée pour une gestion efficace.
+
 #### Technologies utilisées
 
 - HTML
@@ -11,26 +15,19 @@ ___
 - express
 - ejs (Embedded JavaScript)
 - git
-___
-### LINKS
-
-> DEMO URL: [CLICK](https://fierce-savannah-86792.herokuapp.com/ "Heroku Link Demo")
-
-> DOWNLOAD: [CLICK](https://github.com/subhranshuchoudhury/todolist/archive/refs/heads/main.zip "Download Project")
 
 ___
-### CODE
+### Déploiement de l'application
 
-```npm i```
+```git clone https://github.com/kdcl3110/todo-app-jenkins.git```
 
-```git init```
+```cd  todo-app-jenkins```
 
-```git add .```
+```docker build -t todo-app-jenkins .```
 
-```git commit -m "Final Commit"```
+```docker run -p 4200:4200 todo-app-jenkins -d```
 
-```git push heroku master```
+### Lancement des test unitaire
 
-___
+```npm test```
 
-##### Subhranshu Choudhury, Angela YU Course Project.
