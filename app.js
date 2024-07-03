@@ -1,61 +1,53 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-let items = ["coding","eat","sleep"];
+let items = [
+  "Creer un Repository GitHub",
+  "Developper l'Application Web",
+  "Ecrire des Tests",
+];
+
 let workItems = [];
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
+app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/",function(req,res){
-    let date = new Date();
-    
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-    let dateString = date.toLocaleDateString("en-US",options);
+app.get("/", function (req, res) {
+  let date = new Date();
 
-    res.render('list',{listTitle: dateString,newListItems: items});
-    // list --> list.ejs
+  let options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  };
+  let dateString = date.toLocaleDateString("fr-FR", options);
 
+  res.render("list", { listTitle: dateString, newListItems: items });
+  // list --> list.ejs
 });
 
-app.post("/",function(req,res){
-    let item = req.body.newItem;
-
-    if (req.body.List === "Work") {
-        workItems.push(item);
-        res.redirect("/work");
-    }else{
-        items.push(item);
-        res.redirect("/");
-    }
-
+app.post("/", function (req, res) {
+  let item = req.body.newItem;
+  items.push(item);
+  res.redirect("/");
 });
 
-app.get("/work",function(req,res){
-    res.render('list',{listTitle: "Work",newListItems: workItems});
+
+app.post("/test_ajout", function (req, res) {
+  let item = req.body.newItem;
+  items.push(item);
+  res.status(200).json(items);
 });
-
-app.post("/work",function(req,res){
-    let item = req.body.newItem;
-    workItems.push(item);
-    res.redirect("/work");
-})
-
-app.get("/about",(req,res)=>{
-    res.render('about');
-})
-
-
-
 
 //*********************
-app.listen(process.env.PORT || 4200, function(){
-    console.log("Server Live Here: http://localhost:4200/");
+app.listen(process.env.PORT || 4200, function () {
+  console.log("Server Live Here: http://localhost:4200/");
 });
+
+module.exports = app;

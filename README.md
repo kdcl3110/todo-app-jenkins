@@ -1,8 +1,8 @@
 # Todo List
 ___
-## Project Archived 
+## Projet 3DVP
 
-#### USED TECHNOLOGY
+#### Technologies utilisées
 
 - HTML
 - CSS
